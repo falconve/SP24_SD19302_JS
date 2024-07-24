@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- VD: .innerHTML -->
+    <div class="img">
+      <!-- Mong muốn là chèn thẻ ảnh (img) -->
+    </div>
+
+    <!-- VD: .textContent -->
+    <!-- BT: 
+     - thay đoạn văn bản trong thẻ p có id là text sang 
+    1 đoạn văn bản tuỳ ý  
+     - Chèn 1 đoạn văn bản vào thẻ p có id là text1
+    -->
+    <p id="text">Đây là 1 dòng văn bản</p>
+    <p id="text1"></p>
+
+    <!-- VD: .value -->
+    <div class="thong-tin">
+      <label for="">Họ và tên</label>
+      <input class="input-1" type="text" /> <br />
+      <label for="">Địa chỉ</label>
+      <input class="input-2" type="text" /> <br />
+      <label for="">SĐT</label>
+      <input class="input-3" type="number" />
+      <button onclick="layThongTin()">gửi thông tin</button>
+    </div>
+
+    <!-- VD createElement & appendChild -->
+    <div id="hoa">
+      <p>Hoa hồng</p>
+      <p>Hoa lan</p>
+      <p>Hoa cải</p>
+    </div>
+    <script src="bai10.js"></script>
+  </body>
+</html>
