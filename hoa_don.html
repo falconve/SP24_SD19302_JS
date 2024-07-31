@@ -17,36 +17,76 @@
         </div>
         <div class="column">
           <label for="" class="label-class">Loại hàng</label>
-          <select name="" id="">
-            <option value="">Loại 1</option>
-            <option value="">Loại 2</option>
+          <select name="" id="chon-loai" onchange="tienLoai()">
+            <option value="0">Loại 1</option>
+            <option value="1">Loại 2</option>
           </select>
         </div>
         <div class="column">
           <label for="" class="label-class">Đơn giá</label>
-          <input type="text" />
+          <input type="text" id="don-gia" />
         </div>
         <div class="column">
           <label for="" class="label-class">Số lượng</label>
-          <input type="text" />
+          <input type="text" id="so-luong" />
         </div>
         <div class="column">
           <label for="" class="label-class">Thành tiền</label>
-          <input type="text" />
+          <input type="text" id="thanh-tien" />
         </div>
         <div class="column">
           <label for="" class="label-class">Nơi nhận hàng</label>
-          <input type="radio" /> Ngoại thành <input type="radio" /> Nội thành
+          <input type="radio" value="0" name="ship" onchange="tienShip()" />
+          Ngoại thành
+          <input type="radio" value="1" name="ship" onchange="tienShip()" /> Nội
+          thành
         </div>
         <div class="column">
           <label for="" class="label-class">Phí vận chuyển</label>
-          <input type="text" />
+          <input type="text" id="phi-ship" />
         </div>
       </div>
       <div class="wrapper-button">
-        <button class="dat-mua">Đặt mua</button>
-        <a href="google.com">Ấn điii</a>
+        <button class="dat-mua" onclick="tinhTien()">Đặt mua</button>
       </div>
     </div>
+    <script>
+      // Tính tiền loại
+      function tienLoai() {
+        // Lấy ra giá trị mà người dùng chọn
+        let chonLoai = document.querySelector("#chon-loai").value; // 0 hoặc 1
+        let donGia = document.querySelector("#don-gia");
+        if (chonLoai == 0) {
+          donGia.value = 200;
+        } else {
+          donGia.value = 100;
+        }
+      }
+
+      // Tính tiền ship
+      function tienShip() {
+        // chọn theo name thì phải có dấu ngoặc vuông
+        // phải thêm :checked để xem người dùng chọn vào cái nào
+        let ship = document.querySelector('[name="ship"]:checked').value;
+        let phiShip = document.querySelector("#phi-ship");
+        if (ship == 0) {
+          phiShip.value = 50;
+        } else {
+          phiShip.value = 70;
+        }
+      }
+
+      // Tính tổng tiền
+      function tinhTien() {
+        // CT: số lượng * đơn giá + phí vận chuyển
+        let soLuong = document.querySelector("#so-luong").value;
+        let donGia = document.querySelector("#don-gia").value;
+        let phiShip = document.querySelector("#phi-ship").value;
+        let thanhTien = document.querySelector("#thanh-tien");
+        let tongTien = +soLuong * +donGia + +phiShip;
+        //console.log(tongTien);
+        thanhTien.value = tongTien;
+      }
+    </script>
   </body>
 </html>
