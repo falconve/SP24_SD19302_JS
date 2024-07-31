@@ -40,10 +40,10 @@
     </div>
 
     <div class="button">
-      <button onclick="chuyenAnh(-1)">Lùi</button>
-      <button onclick="chuyenAnh(1)">Tiến</button>
-      <button onclick="start()">Start</button>
-      <button onclick="stop()">Stop</button>
+      <!-- <button onclick="chuyenAnh(-1)">Lùi</button>
+      <button onclick="chuyenAnh(1)">Tiến</button> -->
+      <!-- <button onclick="start()">Start</button>
+      <button onclick="stop()">Stop</button> -->
     </div>
     <script>
       // 0. Khai báo biến để lấy ra ảnh đầu tiên
@@ -83,9 +83,33 @@
         slidesImg[slideIndex - 1].style.display = "block";
       }
 
-      // 3. Hàm hienThiAnh luôn luôn phải được chạy để
+      // 3. Hàm hienThiAnh luôn luôn phải được chạy
       // hiển thị ra ảnh đầu tiên
       hienThiAnh(slideIndex);
+
+      // Hàm chạy ảnh tự động
+      let chayTudong;
+
+      function start() {
+        // setInterval: Thực hiện 1 công việc nào đó lặp đi lặp lại trong
+        // 1 khoảng thời gian (theo mili giây VD: 2s = 2000, 5s = 5000)
+        // Chạy ảnh tự động sau 2 giây (2000ms)
+        chayTudong = setInterval(function () {
+          // Ấn nút tiến
+          chuyenAnh(1);
+        }, 2000);
+      }
+
+      // Hàm dừng chạy tự động
+      function stop() {
+        // Muốn dừng setInterval thì sử dụng clearInterval
+        // clearInterval chỉ nhận vào 1 đối số
+        clearInterval(chayTudong);
+      }
+
+      // window.onload: Khi trang vừa đc tải xong thì thực
+      // hiện 1 công việc gì đó
+      window.onload = start;
     </script>
   </body>
 </html>
