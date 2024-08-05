@@ -13,7 +13,8 @@
       <div class="hoa-don">
         <div class="column">
           <label for="" class="label-class">Khách hàng</label>
-          <input type="text" />
+          <input type="text" id="khach-hang" />
+          <p id="customer-error" class="error"></p>
         </div>
         <div class="column">
           <label for="" class="label-class">Loại hàng</label>
@@ -29,6 +30,7 @@
         <div class="column">
           <label for="" class="label-class">Số lượng</label>
           <input type="text" id="so-luong" />
+          <p id="quantity-error" class="error"></p>
         </div>
         <div class="column">
           <label for="" class="label-class">Thành tiền</label>
@@ -78,14 +80,38 @@
 
       // Tính tổng tiền
       function tinhTien() {
-        // CT: số lượng * đơn giá + phí vận chuyển
+        // Biến trạng thái để kiểm tra xem người dùng đã nhập đầy đủ thông tin chưa
+        let isStatus = true;
         let soLuong = document.querySelector("#so-luong").value;
-        let donGia = document.querySelector("#don-gia").value;
-        let phiShip = document.querySelector("#phi-ship").value;
-        let thanhTien = document.querySelector("#thanh-tien");
-        let tongTien = +soLuong * +donGia + +phiShip;
-        //console.log(tongTien);
-        thanhTien.value = tongTien;
+        let khachHang = document.querySelector("#khach-hang").value;
+
+        let customerError = document.querySelector("#customer-error");
+        let quantityError = document.querySelector("#quantity-error");
+
+        if (khachHang === "") {
+          isStatus = false;
+          customerError.textContent = "Bạn chưa nhập tên khách hàng";
+        } else {
+          customerError.textContent = "";
+        }
+
+        if (soLuong === "" || soLuong <= 0) {
+          isStatus = false;
+          quantityError.textContent =
+            "Bạn chưa nhập số lượng hoặc số lượng không đúng";
+        } else {
+          quantityError.textContent = "";
+        }
+
+        if (isStatus) {
+          // CT: số lượng * đơn giá + phí vận chuyển
+          let donGia = document.querySelector("#don-gia").value;
+          let phiShip = document.querySelector("#phi-ship").value;
+          let thanhTien = document.querySelector("#thanh-tien");
+          let tongTien = +soLuong * +donGia + +phiShip;
+          //console.log(tongTien);
+          thanhTien.value = tongTien;
+        }
       }
     </script>
   </body>

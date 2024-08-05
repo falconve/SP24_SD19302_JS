@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* CSS FOR TICKET BOOKING */
+      .booking-ticket label {
+        display: inline-block;
+        width: 150px;
+      }
+
+      .booking-ticket {
+        border: 1px solid;
+        padding: 10px 15px;
+        max-width: 344px;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Đặt vé xem phim</h1>
+    <div class="booking-ticket">
+      <div>
+        <label for="name">Họ và tên: </label>
+        <input type="text" id="name" required />
+      </div>
+      <br />
+
+      <div>
+        <label for="email">Email: </label>
+        <input type="email" id="email" required />
+      </div>
+      <br />
+
+      <div id="gioitinh">
+        <label for="name">Giới tính: </label>
+        <input type="radio" name="gioitinh" value="nam" />Nam
+        <input type="radio" name="gioitinh" value="nu" />Nữ
+      </div>
+      <br />
+
+      <br />
+
+      <div>
+        <label for="name">SĐT: </label>
+        <input type="text" id="phone" />
+      </div>
+      <br />
+
+      <div>
+        <label for="name">Chọn phim: </label>
+        <select id="booking">
+          <option value="phim1">Phim số 1</option>
+          <option value="phim2">Phim số 2</option>
+        </select>
+      </div>
+      <br />
+
+      <div>
+        <label for="name">Hình thức thanh toán: </label>
+        <select id="payment">
+          <option value="online">Online</option>
+          <option value="offline">Offline</option>
+        </select>
+      </div>
+      <br />
+      <div>
+        <button id="btn" onclick="datVe()">Đặt vé</button>
+      </div>
+    </div>
+    <table id="table" border="1">
+      <thead>
+        <tr>
+          <th scope="col">Họ và tên</th>
+          <th scope="col">Email</th>
+          <th scope="col">Giới tính</th>
+          <th scope="col">SĐT</th>
+          <th scope="col">Tên phim</th>
+          <th scope="col">Thanh Toán</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <script>
+      function datVe() {
+        let fullName = document.querySelector("#name").value; // <td></td>
+        let email = document.querySelector("#email").value;
+        let gioiTinh = document.querySelector(
+          '[name="gioitinh"]:checked'
+        ).value;
+        let phim = document.querySelector("#booking").value;
+        let payment = document.querySelector("#payment").value;
+        let phone = document.querySelector("#phone").value;
+
+        // Chọn tới thẻ tbody của bảng
+        let table = document.querySelector("#table > tbody");
+
+        let ketQua = `
+        <td>${fullName}</td>
+        <td>${email}</td>
+        <td>${gioiTinh}</td>
+        <td>${phone}</td>
+        <td>${phim}</td>
+        <td>${payment}</td>
+        `;
+
+        // Sử dụng += để nối thêm dữ liệu vào các dòng tiếp theo
+        table.innerHTML += ketQua;
+
+        // BT LAB 6: VALIDATE
+        // - CHECK TRỐNG TÊN VÀ SĐT (6Đ)
+        // -  SĐT PHẢI LÀ 10 SỐ (4Đ)
+      }
+    </script>
+  </body>
+</html>
